@@ -57,10 +57,10 @@ public class YCRangeSlider: UIControl {
         return ((y - _padding) / (self.frame.size.height - _padding*2)) * (maximumValue - minimumRange) + minimumValue
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.blackColor()
-        
+        self.setupBackgroundView()
     }
     
     public func initWithFrame2(frame frame: CGRect) {
@@ -69,6 +69,10 @@ public class YCRangeSlider: UIControl {
         self.initPopValue()
         self.initMaxThumb()
         self.initMinThumb()
+    }
+    
+    public func init3() {
+        self.setupBackgroundView()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -225,6 +229,62 @@ public class YCRangeSlider: UIControl {
         self.setNeedsDisplay()
         
         return true
+    }
+    
+    public var start: Int = 0
+    public var end: Int = 50
+    
+    public var step: Int = 10
+    public var unit: Int = 1
+    
+    let UNIT_WIDTH: CGFloat = 1
+    let UNIT_HEIGHT: CGFloat = 10
+    let STEP_HEIGHT: CGFloat = 15
+    func setupBackgroundView() {
+        
+        // Draw the base line
+        let lineHeight: CGFloat = 1
+        let lineWidth: CGFloat = self.frame.width - _padding*2
+        let line = UIView(frame: CGRectMake(0, 0, lineWidth, lineHeight))
+        line.center = self.center
+        line.backgroundColor = UIColor.whiteColor()
+        self.addSubview(line)
+    
+        
+        let unitWidth = lineWidth / CGFloat((end - start))
+        print("unitWidth \(unitWidth)")
+
+        for unit in 0...(end - start) {
+            if unit % step == 0 { // Add step to the base line
+                let stepLine: UIView = UIView(frame: CGRectMake(
+                    _padding + unitWidth * CGFloat(unit),
+                    line.center.y - STEP_HEIGHT,
+                    UNIT_WIDTH,
+                    STEP_HEIGHT))
+                stepLine.backgroundColor = UIColor.whiteColor()
+                self.addSubview(stepLine)
+                
+                let stepNumber: UILabel = UILabel()
+                stepNumber.text = "\(unit)"
+                stepNumber.textColor = UIColor.whiteColor()
+                stepNumber.font = UIFont.systemFontOfSize(10)
+                stepNumber.sizeToFit()
+
+                stepNumber.center = CGPointMake(stepLine.center.x, stepLine.center.y - STEP_HEIGHT)
+                self.addSubview(stepNumber)
+                
+            } else { // Add unit to the base line
+                let unitLine: UIView = UIView(frame: CGRectMake(
+                    _padding + unitWidth * CGFloat(unit),
+                    line.center.y - UNIT_HEIGHT,
+                    UNIT_WIDTH,
+                    UNIT_HEIGHT))
+                
+                unitLine.backgroundColor = UIColor.whiteColor()
+                self.addSubview(unitLine)
+            }
+        }
+        
     }
     
 }

@@ -24,26 +24,26 @@ class ViewController: UIViewController {
     }
 //    var slider: YCRangeSlider!
     func initRangeSlider() {
-        let slider = YCRangeSlider()
+        let slider = YCRangeSlider(frame: self.view.frame)
         
         // Setup the Values
-        slider.minimumValue = 0
-        slider.selectedMinimumValue = 0
-        slider.maximumValue = 500
-        slider.selectedMaximumValue = 500
-        slider.minimumRange = 1
-        
-        // Setup the custom image
-        slider.barBackground = UIImage(named: "tm_bar-background")
-        slider.minHandle = UIImage(named: "tm_handle_start")
-        slider.maxHandle = UIImage(named: "tm_handle_end")
-        slider.popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
-        
-        let height: CGFloat = 463
-        let width: CGFloat = 133
-        
-        slider.initWithFrame2(frame: CGRectMake((self.view.frame.width-width)/2, (self.view.frame.height - height)/2, width, height))
-        
+//        slider.minimumValue = 0
+//        slider.selectedMinimumValue = 0
+//        slider.maximumValue = 500
+//        slider.selectedMaximumValue = 500
+//        slider.minimumRange = 1
+//        
+//        // Setup the custom image
+//        slider.barBackground = UIImage(named: "tm_bar-background")
+//        slider.minHandle = UIImage(named: "tm_handle_start")
+//        slider.maxHandle = UIImage(named: "tm_handle_end")
+//        slider.popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
+//        
+//        let height: CGFloat = 463
+//        let width: CGFloat = 133
+//        
+//        slider.initWithFrame2(frame: CGRectMake((self.view.frame.width-width)/2, (self.view.frame.height - height)/2, width, height))
+//        
         self.view.addSubview(slider)
     }
 }
