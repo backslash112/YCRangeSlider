@@ -1,0 +1,14 @@
+PODS:
+  - YCRangeSlider (0.1.0)
+
+DEPENDENCIES:
+  - YCRangeSlider (from `../`)
+
+EXTERNAL SOURCES:
+  YCRangeSlider:
+    :path: ../
+
+SPEC CHECKSUMS:
+  YCRangeSlider: 80878bb9473ba287b729f5b102b31c2ae9c18be7
+
+COCOAPODS: 0.38.2

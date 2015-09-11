@@ -1,0 +1,6 @@
+framework module Pods_YCRangeSlider_Example {
+  umbrella header "Pods-YCRangeSlider_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
