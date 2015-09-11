@@ -15,26 +15,36 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.initRangeSlider()
-        self.view.addSubview(self.slider)
-        self.view.backgroundColor = UIColor.grayColor()
+//        self.view.addSubview(self.slider)
+        self.view.backgroundColor = UIColor.blackColor()
     }
     
-    var slider: YCRangeSlider!
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+//    var slider: YCRangeSlider!
     func initRangeSlider() {
-        self.slider = YCRangeSlider()
-        self.slider.minimumValue = 0
-        self.slider.selectedMinimumValue = 0
-        self.slider.maximumValue = 500
-        self.slider.selectedMaximumValue = 500
-        self.slider.minimumRange = 1
+        let slider = YCRangeSlider()
         
-        self.slider.barBackground = UIImage(named: "tm_bar-background")
-        self.slider.minHandle = UIImage(named: "tm_handle_start")
-        self.slider.maxHandle = UIImage(named: "tm_handle_end")
-        self.slider.popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
+        // Setup the Values
+        slider.minimumValue = 0
+        slider.selectedMinimumValue = 0
+        slider.maximumValue = 500
+        slider.selectedMaximumValue = 500
+        slider.minimumRange = 1
+        
+        // Setup the custom image
+        slider.barBackground = UIImage(named: "tm_bar-background")
+        slider.minHandle = UIImage(named: "tm_handle_start")
+        slider.maxHandle = UIImage(named: "tm_handle_end")
+        slider.popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
+        
         let height: CGFloat = 463
         let width: CGFloat = 133
+        
         slider.initWithFrame2(frame: CGRectMake((self.view.frame.width-width)/2, (self.view.frame.height - height)/2, width, height))
+        
+        self.view.addSubview(slider)
     }
 }
 

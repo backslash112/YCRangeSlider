@@ -31,6 +31,7 @@ public class PopView: UIImageView {
     
     func initValueLabel() {
         valueLabel = UILabel(frame: self.frame)
+        valueLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(valueLabel)
         
     }
@@ -42,7 +43,7 @@ public class PopView: UIImageView {
         }
         set {
             _popValue = newValue
-            self.valueLabel.text = _popValue
+            self.valueLabel.text = "2005"
         }
     }
 }
