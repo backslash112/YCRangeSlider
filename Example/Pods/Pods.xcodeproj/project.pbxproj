@@ -13,7 +13,6 @@
 		8BB7D013E56F67E135934729849AE548 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6972D8471FBA3A752B54664487AA53 /* Foundation.framework */; };
 		9D8FE3BE765C75AA927A7A1CD7295FD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6972D8471FBA3A752B54664487AA53 /* Foundation.framework */; };
 		BD29A51BB3531B1D596540B97E6D691D /* YCRangeSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAFD07022C6A0778CE745E9B78654FD /* YCRangeSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3C51EC01BA2C0C1004850D3 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C51EBF1BA2BD72004850D3 /* images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		D4FC02AB946B1ECCD59312C2AA9E46F4 /* Pods-YCRangeSlider_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4EC271FC39B3CCCC48A17FB5B932954 /* Pods-YCRangeSlider_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8926A02B53AD858CCACD2905B70DAC1 /* YCRangeSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFC7E53916D41EE35EEEB19251964BB /* YCRangeSlider-dummy.m */; };
 		DB5CB520EB16F86BA4C8C4D80ECA7188 /* Pods-YCRangeSlider_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAF9877EB7BBF3B0BA449CCD1AA71E /* Pods-YCRangeSlider_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,21 +22,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3B50251BF9391860097D2CE9FBA356EB /* PBXContainerItemProxy */ = {
+		474EF8BB30572CF880965654F3513524 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2491AAD13A4859EF59261B0CB0D15FE5;
 			remoteInfo = "YCRangeSlider-YCRangeSlider";
 		};
-		B979572AEBE567AF3C784FCD7E2DC437 /* PBXContainerItemProxy */ = {
+		6CDCFDCC3FB195ED09D7B838375F0F80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 80833263B1D90EA62F98BB3918C959D5;
 			remoteInfo = YCRangeSlider;
 		};
-		D651129956224B8C0FC2C0DE511CD6FA /* PBXContainerItemProxy */ = {
+		7D5EC1BA14D057D12FA9602F7BA31B29 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -71,7 +70,6 @@
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BBB4D40405169DC8696DC9B214467140 /* YCRangeSlider-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "YCRangeSlider-Private.xcconfig"; sourceTree = "<group>"; };
 		C2FB7A72B787BC2674BC380014EA6A3C /* YCRangeSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YCRangeSlider-prefix.pch"; sourceTree = "<group>"; };
-		C3C51EBF1BA2BD72004850D3 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		C42BFAA6933BB073E1E2B50588B9AC17 /* YCRangeSlider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCRangeSlider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7891898EE01F1BEE0B836E7DB9DC2B7 /* PopView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
 		CD08D1BE3211BC7517586AA74749126C /* Pods-YCRangeSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YCRangeSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				8BB466B14A976130BDD1C21C47C55EA8 /* Classes */,
-				C3C51EBF1BA2BD72004850D3 /* images.xcassets */,
 			);
 			path = Pod;
 			sourceTree = "<group>";
@@ -313,7 +310,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0ED3D6B510539950EA611EAEB3AC360 /* PBXTargetDependency */,
+				413E1CB807CD96E31C7890046FAB1B1F /* PBXTargetDependency */,
 			);
 			name = YCRangeSlider;
 			productName = YCRangeSlider;
@@ -331,7 +328,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F6E361C4E257AE93B874AF905D9559B1 /* PBXTargetDependency */,
+				FCC145BE26ED23D01AF49F1E9EE44716 /* PBXTargetDependency */,
 			);
 			name = "Pods-YCRangeSlider_Example";
 			productName = "Pods-YCRangeSlider_Example";
@@ -349,7 +346,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				60D8CEE3125049DC29ED7FCD1A17E472 /* PBXTargetDependency */,
+				44B14B68817ADB0A692F5EA8585D08DA /* PBXTargetDependency */,
 			);
 			name = "Pods-YCRangeSlider_Tests";
 			productName = "Pods-YCRangeSlider_Tests";
@@ -398,7 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E06A10AF266E73FBA20338EFC6CE070 /* YCRangeSlider.bundle in Resources */,
-				C3C51EC01BA2C0C1004850D3 /* images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,23 +437,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		60D8CEE3125049DC29ED7FCD1A17E472 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YCRangeSlider;
-			target = 80833263B1D90EA62F98BB3918C959D5 /* YCRangeSlider */;
-			targetProxy = D651129956224B8C0FC2C0DE511CD6FA /* PBXContainerItemProxy */;
-		};
-		F0ED3D6B510539950EA611EAEB3AC360 /* PBXTargetDependency */ = {
+		413E1CB807CD96E31C7890046FAB1B1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "YCRangeSlider-YCRangeSlider";
 			target = 2491AAD13A4859EF59261B0CB0D15FE5 /* YCRangeSlider-YCRangeSlider */;
-			targetProxy = 3B50251BF9391860097D2CE9FBA356EB /* PBXContainerItemProxy */;
+			targetProxy = 474EF8BB30572CF880965654F3513524 /* PBXContainerItemProxy */;
 		};
-		F6E361C4E257AE93B874AF905D9559B1 /* PBXTargetDependency */ = {
+		44B14B68817ADB0A692F5EA8585D08DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = YCRangeSlider;
 			target = 80833263B1D90EA62F98BB3918C959D5 /* YCRangeSlider */;
-			targetProxy = B979572AEBE567AF3C784FCD7E2DC437 /* PBXContainerItemProxy */;
+			targetProxy = 6CDCFDCC3FB195ED09D7B838375F0F80 /* PBXContainerItemProxy */;
+		};
+		FCC145BE26ED23D01AF49F1E9EE44716 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YCRangeSlider;
+			target = 80833263B1D90EA62F98BB3918C959D5 /* YCRangeSlider */;
+			targetProxy = 7D5EC1BA14D057D12FA9602F7BA31B29 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
