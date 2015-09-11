@@ -61,6 +61,8 @@ public class YCRangeSlider: UIControl {
         super.init(frame: frame)
         self.backgroundColor = UIColor.blackColor()
         self.setupBackgroundView()
+        self.setupHandleA()
+        self.setupHandleB()
     }
     
     public func initWithFrame2(frame frame: CGRect) {
@@ -240,6 +242,9 @@ public class YCRangeSlider: UIControl {
     let UNIT_WIDTH: CGFloat = 1
     let UNIT_HEIGHT: CGFloat = 10
     let STEP_HEIGHT: CGFloat = 15
+    
+    
+    
     func setupBackgroundView() {
         
         // Draw the base line
@@ -285,6 +290,25 @@ public class YCRangeSlider: UIControl {
             }
         }
         
+    }
+    
+    func setupHandleA() {
+        let view = UIView(frame: CGRectMake(0, 0, 100, 200))
+        view.backgroundColor = UIColor.whiteColor()
+        let handle = UIImageView(image: UIImage(named: "handle"))
+        handle.backgroundColor = UIColor.redColor()
+//        handle.sizeToFit()
+        handle.frame = CGRectMake(0, 0, 100, 100)
+//        handle.center = CGPointMake(100, (self.frame.height - STEP_HEIGHT) / 2)
+//        self.addSubview(handle)
+        view.addSubview(handle)
+        self.addSubview(view)
+    }
+    
+    func setupHandleB() {
+        let handle = UIImageView(image: UIImage(named: "handle"))
+        handle.sizeToFit()
+        handle.center = CGPointMake(200, (self.frame.height - STEP_HEIGHT) / 2)
     }
     
 }

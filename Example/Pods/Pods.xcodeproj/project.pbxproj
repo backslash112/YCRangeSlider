@@ -13,6 +13,7 @@
 		8BB7D013E56F67E135934729849AE548 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6972D8471FBA3A752B54664487AA53 /* Foundation.framework */; };
 		9D8FE3BE765C75AA927A7A1CD7295FD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6972D8471FBA3A752B54664487AA53 /* Foundation.framework */; };
 		BD29A51BB3531B1D596540B97E6D691D /* YCRangeSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAFD07022C6A0778CE745E9B78654FD /* YCRangeSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3C51EC01BA2C0C1004850D3 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C51EBF1BA2BD72004850D3 /* images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		D4FC02AB946B1ECCD59312C2AA9E46F4 /* Pods-YCRangeSlider_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4EC271FC39B3CCCC48A17FB5B932954 /* Pods-YCRangeSlider_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8926A02B53AD858CCACD2905B70DAC1 /* YCRangeSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFC7E53916D41EE35EEEB19251964BB /* YCRangeSlider-dummy.m */; };
 		DB5CB520EB16F86BA4C8C4D80ECA7188 /* Pods-YCRangeSlider_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAF9877EB7BBF3B0BA449CCD1AA71E /* Pods-YCRangeSlider_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,6 +71,7 @@
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BBB4D40405169DC8696DC9B214467140 /* YCRangeSlider-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "YCRangeSlider-Private.xcconfig"; sourceTree = "<group>"; };
 		C2FB7A72B787BC2674BC380014EA6A3C /* YCRangeSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YCRangeSlider-prefix.pch"; sourceTree = "<group>"; };
+		C3C51EBF1BA2BD72004850D3 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		C42BFAA6933BB073E1E2B50588B9AC17 /* YCRangeSlider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCRangeSlider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7891898EE01F1BEE0B836E7DB9DC2B7 /* PopView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
 		CD08D1BE3211BC7517586AA74749126C /* Pods-YCRangeSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YCRangeSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB466B14A976130BDD1C21C47C55EA8 /* Classes */,
+				C3C51EBF1BA2BD72004850D3 /* images.xcassets */,
 			);
 			path = Pod;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E06A10AF266E73FBA20338EFC6CE070 /* YCRangeSlider.bundle in Resources */,
+				C3C51EC01BA2C0C1004850D3 /* images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
