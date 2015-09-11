@@ -1,15 +1,15 @@
 {
   "name": "YCRangeSlider",
   "version": "0.1.0",
-  "summary": "A short description of YCRangeSlider.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/YCRangeSlider",
+  "summary": "A Range Slider for iOS",
+  "description": "A Range Slider for iOS.",
+  "homepage": "https://github.com/backslash112/YCRangeSlider",
   "license": "MIT",
   "authors": {
     "backslash112": "yangcun@live.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/YCRangeSlider.git",
+    "git": "https://github.com/backslash112/YCRangeSlider.git",
     "tag": "0.1.0"
   },
   "platforms": {
