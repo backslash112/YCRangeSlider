@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'YCRangeSlider_Example', :exclusive => true do
+  pod "YCRangeSlider", :path => "../"
+end
+
+target 'YCRangeSlider_Tests', :exclusive => true do
+  pod "YCRangeSlider", :path => "../"
+
+  
+end
