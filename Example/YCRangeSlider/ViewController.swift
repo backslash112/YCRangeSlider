@@ -9,7 +9,7 @@
 import UIKit
 import YCRangeSlider
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, YCRangeSliderDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,27 +24,16 @@ class ViewController: UIViewController {
     }
 //    var slider: YCRangeSlider!
     func initRangeSlider() {
-        let slider = YCRangeSlider(frame: self.view.frame)
-        
-        // Setup the Values
-//        slider.minimumValue = 0
-//        slider.selectedMinimumValue = 0
-//        slider.maximumValue = 500
-//        slider.selectedMaximumValue = 500
-//        slider.minimumRange = 1
-//        
-//        // Setup the custom image
-//        slider.barBackground = UIImage(named: "tm_bar-background")
-//        slider.minHandle = UIImage(named: "tm_handle_start")
-//        slider.maxHandle = UIImage(named: "tm_handle_end")
-//        slider.popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
-//        
-//        let height: CGFloat = 463
-//        let width: CGFloat = 133
-//        
-//        slider.initWithFrame2(frame: CGRectMake((self.view.frame.width-width)/2, (self.view.frame.height - height)/2, width, height))
-//        
+        let slider = YCRangeSlider(frame: self.view.frame, relative: YCRelative.horizontal, minimumValue: 0, maximumValue: 50, step: 10)
+        slider.delegate = self
+        slider.moveThumbByStep = true
         self.view.addSubview(slider)
+    }
+    
+    // MARK: - YCRangeSliderDelegate
+    
+    func rangeSlider(rangeSlider: YCRangeSlider, valueChangedWithMinimumValue minimumValue: CGFloat, andMaxiumValue maxiumValue: CGFloat) {
+        print("minimumValue: \(minimumValue)  maxiumValue: \(maxiumValue)")
     }
 }
 
