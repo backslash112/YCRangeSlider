@@ -20,7 +20,7 @@
 		DB5CB520EB16F86BA4C8C4D80ECA7188 /* Pods-YCRangeSlider_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAF9877EB7BBF3B0BA449CCD1AA71E /* Pods-YCRangeSlider_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E96D01153BF68A1F1A0FAC64CF4A9D1B /* Pods-YCRangeSlider_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC2C4BFC23D5B20CB4ED40CE582267F /* Pods-YCRangeSlider_Tests-dummy.m */; };
 		EF75E1681776A9E04C0BB45AAFF1A2F7 /* YCRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840FAD081E552759A178473AC5BD9 /* YCRangeSlider.swift */; };
-		FFCB63E75E014AE3039F173599D03717 /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7891898EE01F1BEE0B836E7DB9DC2B7 /* PopView.swift */; };
+		FFCB63E75E014AE3039F173599D03717 /* YCPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7891898EE01F1BEE0B836E7DB9DC2B7 /* YCPopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,7 @@
 		C3C51ECC1BA66A99004850D3 /* YCRangeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCRangeSliderTests.swift; sourceTree = "<group>"; };
 		C3C51ECE1BA66A99004850D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42BFAA6933BB073E1E2B50588B9AC17 /* YCRangeSlider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCRangeSlider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7891898EE01F1BEE0B836E7DB9DC2B7 /* PopView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
+		C7891898EE01F1BEE0B836E7DB9DC2B7 /* YCPopView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YCPopView.swift; sourceTree = "<group>"; };
 		CD08D1BE3211BC7517586AA74749126C /* Pods-YCRangeSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YCRangeSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CF7F12B1D242E3C932568D1ACE88A27B /* Pods-YCRangeSlider_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-YCRangeSlider_Tests.modulemap"; sourceTree = "<group>"; };
 		E4EC271FC39B3CCCC48A17FB5B932954 /* Pods-YCRangeSlider_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YCRangeSlider_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 		8BB466B14A976130BDD1C21C47C55EA8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C7891898EE01F1BEE0B836E7DB9DC2B7 /* PopView.swift */,
+				C7891898EE01F1BEE0B836E7DB9DC2B7 /* YCPopView.swift */,
 				142840FAD081E552759A178473AC5BD9 /* YCRangeSlider.swift */,
 			);
 			path = Classes;
@@ -467,7 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFCB63E75E014AE3039F173599D03717 /* PopView.swift in Sources */,
+				FFCB63E75E014AE3039F173599D03717 /* YCPopView.swift in Sources */,
 				D8926A02B53AD858CCACD2905B70DAC1 /* YCRangeSlider-dummy.m in Sources */,
 				EF75E1681776A9E04C0BB45AAFF1A2F7 /* YCRangeSlider.swift in Sources */,
 			);
@@ -901,6 +901,7 @@
 				C3C51ED41BA66A99004850D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

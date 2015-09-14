@@ -1,5 +1,5 @@
 //
-//  PopView.swift
+//  YCPopView.swift
 //  ios-custom-slider-demo
 //
 //  Created by Carl.Yang on 9/11/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PopView: UIImageView {
+public class YCPopView: UIImageView {
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -20,7 +20,6 @@ public class PopView: UIImageView {
     
     override init(image: UIImage?) {
         super.init(image: image)
-        
         self.initValueLabel()
     }
     
@@ -43,7 +42,7 @@ public class PopView: UIImageView {
         }
         set {
             _popValue = newValue
-            self.valueLabel.text = "2005"
+            self.valueLabel.text = newValue
         }
     }
 }
