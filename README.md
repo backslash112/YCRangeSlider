@@ -33,7 +33,7 @@ slider.maximumValue = 500
 slider.selectedMaximumValue = 500
 slider.minimumRange = 1
 
-// Setup the custom image
+// Configure custom interface
 slider.barBackground = UIImage(named: "tm_bar-background")
 slider.minHandle = UIImage(named: "tm_handle_start")
 slider.maxHandle = UIImage(named: "tm_handle_end")
