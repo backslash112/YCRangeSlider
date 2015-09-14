@@ -180,10 +180,11 @@ public class YCRangeSlider: UIControl {
             
             let unitHeight = lineHeight / CGFloat((maximumValue - minimumValue))
             for unit in 0...Int(maximumValue - minimumValue) {
-                if unit % step == 0 {
+                print("unit \(unit)")
+                if unit % self.step == 0 {
                     let stepLine: UIView = UIView(frame: CGRectMake(
                         line.center.x - STEP_HEIGHT,
-                        _padding + unitHeight * CGFloat(unit),
+                        self.frame.height - self._padding - unitHeight * CGFloat(unit),
                         STEP_HEIGHT,
                         UNIT_WIDTH))
                     stepLine.backgroundColor = UIColor.whiteColor()
@@ -198,7 +199,7 @@ public class YCRangeSlider: UIControl {
                     stepNumber.center = CGPointMake(stepLine.center.x - STEP_HEIGHT, stepLine.center.y)
                     self.addSubview(stepNumber)
                 } else {
-                    let unitLine: UIView = UIView(frame: CGRectMake(line.center.x - UNIT_HEIGHT, _padding+unitHeight*CGFloat(unit), UNIT_HEIGHT, UNIT_WIDTH))
+                    let unitLine: UIView = UIView(frame: CGRectMake(line.center.x - UNIT_HEIGHT, self._padding+unitHeight*CGFloat(unit), UNIT_HEIGHT, UNIT_WIDTH))
                     unitLine.backgroundColor = UIColor.whiteColor()
                     self.addSubview(unitLine)
                 }
