@@ -35,6 +35,7 @@ class YCRangeSliderTests: XCTestCase {
         }
     }
     
+    /*
     func testXForValueMethod() {
         let slider = YCRangeSlider()
         slider.self_view_size_width = 500
@@ -65,6 +66,19 @@ class YCRangeSliderTests: XCTestCase {
         let x2: CGFloat = 150
         let value2 = slider.valueForX(x2)
         XCTAssertEqual(25, value2)
+    }
+    */
+    
+    func testGetPreStepValueByStepMethod() {
+        let slider = YCRangeSlider()
+        XCTAssertEqual(slider.getPreStepValue(8, byStep: 5), 5)
+        XCTAssertEqual(slider.getPreStepValue(14, byStep: 5), 10)
+    }
+    
+    func testGetNextStepValueByStepMethod() {
+        let slider = YCRangeSlider()
+        XCTAssertEqual(slider.getNextStepValue(8, byStep: 5), 10)
+        XCTAssertEqual(slider.getNextStepValue(14, byStep: 5), 15)
     }
     
 }

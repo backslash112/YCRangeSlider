@@ -377,10 +377,14 @@ public class YCRangeSlider: UIControl {
         if _minThumbOn {
             _minThumb.center = CGPointMake(max(self.xForValue(self.minimumValue), min(touchPoint.x, self.xForValue(self.selectedMaximumValue - self.minimumRange))), _minThumb.center.y)
             self.selectedMinimumValue = self.valueForX(_minThumb.center.x)
+            
+            
         }
         if _maxThumbOn {
-                        _maxThumb.center = CGPointMake(min(max(self.xForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.x), self.xForValue(self.maximumValue)), _maxThumb.center.y)
+            _maxThumb.center = CGPointMake(min(max(self.xForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.x), self.xForValue(self.maximumValue)), _maxThumb.center.y)
             self.selectedMaximumValue = self.valueForX(_maxThumb.center.x)
+            
+            
         }
         return true
     }
@@ -388,6 +392,51 @@ public class YCRangeSlider: UIControl {
     public override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         _maxThumbOn = false
         _minThumbOn = false
+        
+        // Adjust the minThumb's center
+        let minThumbRoundValue = self.getTheRoundValue(Int(self.selectedMinimumValue))
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.adjustThumbCenter(self._minThumb, byNewValue: minThumbRoundValue)
+        }
+        
+        self.selectedMinimumValue = minThumbRoundValue
+        
+        // Adjust the maxThumb's center
+        let maxThumbRoundValue = self.getTheRoundValue(Int(self.selectedMaximumValue))
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.adjustThumbCenter(self._maxThumb, byNewValue: maxThumbRoundValue)
+            
+        }
+        self.selectedMaximumValue = maxThumbRoundValue
+    }
+    
+    func getTheRoundValue(value: Int) -> CGFloat {
+        if value == 0 {
+            return 0
+        }
+        if value % self.step == 0 {
+            return CGFloat(value)
+        }
+        let pre = value / self.step * self.step
+        let next = (value / self.step + 1) * self.step
+        if (value - pre) < (next - value) {
+            return CGFloat(pre)
+        } else {
+            return CGFloat(next)
+        }
+    }
+    
+    public func getPreStepValue(value: CGFloat, byStep step: CGFloat) -> CGFloat {
+        return CGFloat(Int(value / step) * Int(step))
+    }
+    
+    public func getNextStepValue(value: CGFloat, byStep step: CGFloat) -> CGFloat {
+        return CGFloat((Int(value / step) + 1) * Int(step))
+    }
+    
+    func adjustThumbCenter(thumb: UIView, byNewValue value: CGFloat) {
+        let newX = self.xForValue(value)
+        thumb.center = CGPointMake(newX, thumb.center.y)
     }
 }
 
