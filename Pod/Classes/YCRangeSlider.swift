@@ -8,6 +8,18 @@
 
 import UIKit
 
+public enum YCRelative {
+    case horizontal, vertical
+}
+
+public enum YCHorizontalAlignment {
+    case left, right
+}
+
+public enum YCVerticalAlignment {
+    case top, bottom
+}
+
 public class YCRangeSlider: UIControl {
     
     /*
@@ -30,6 +42,9 @@ public class YCRangeSlider: UIControl {
     public var popViewBackgroundImage: UIImage!
     
     public var moveThumbByStep = false
+    public var relative: YCRelative = .vertical
+    public var horizontalAlignment: YCHorizontalAlignment = .left
+    public var verticalAlignment: YCVerticalAlignment = .top
     
     var _maxThumbOn = false
     var _minThumbOn = false
@@ -49,7 +64,7 @@ public class YCRangeSlider: UIControl {
     }
     
     func yForValue(value: CGFloat) -> CGFloat {
-        return  (self.frame.size.height - _padding*2) * (value - minimumValue) / (maximumValue - minimumValue) + _padding
+        return  (self.frame.height - _padding*2) * (value - minimumValue) / (maximumValue - minimumValue) + _padding
     }
     
     public func valueForX(x: CGFloat) -> CGFloat {
@@ -57,7 +72,7 @@ public class YCRangeSlider: UIControl {
     }
     
     func valueForY(y: CGFloat) -> CGFloat {
-        return ((y - _padding) / (self.frame.size.height - _padding*2)) * (maximumValue - minimumRange) + minimumValue
+        return ((y - _padding) / (self.frame.height - _padding*2)) * (maximumValue - minimumValue) + minimumValue
     }
     
     public override init(frame: CGRect) {
@@ -68,13 +83,13 @@ public class YCRangeSlider: UIControl {
         self.setupHandleMinThumb()
     }
     
-    public func initWithFrame2(frame frame: CGRect) {
-        self.frame = frame
-        self.initBackground()
-        self.initPopValue()
-        self.initMaxThumb()
-        self.initMinThumb()
-    }
+    //    public func initWithFrame2(frame frame: CGRect) {
+    //        self.frame = frame
+    //        self.initBackground()
+    //        self.initPopValue()
+    //        self.initMaxThumb()
+    //        self.initMinThumb()
+    //    }
     
     public func init3() {
         self.setupBackgroundView()
@@ -84,47 +99,27 @@ public class YCRangeSlider: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initBackground() {
-        _trackBackground = UIImageView(image: barBackground)
-        _trackBackground.frame = CGRectMake(
-            self.frame.width - _trackBackground.frame.width,
-            _padding,
-            _trackBackground.frame.width,
-            self.frame.height - _padding*2)
-        self.addSubview(_trackBackground)
-    }
-    
-    func initHeighlight() {
-        _track = UIImageView(image: UIImage(named: "bar-highlight"))
-        _track.frame = CGRectMake(
-            (self.frame.width - _track.frame.width)/2,
-            _padding,
-            _track.frame.width,
-            self.frame.height - _padding*2)
-        self.addSubview(_track)
-    }
-    
-    func initMinThumb() {
-        _minThumb = UIImageView(image: minHandle)
-        _minThumb.center = CGPointMake(self.popView.frame.width + (_minThumb.frame.width / 2), self.yForValue(self.selectedMinimumValue))
-        self.addSubview(_minThumb)
-    }
-    
-    func initMaxThumb() {
-        _maxThumb = UIImageView(image: maxHandle)
-        
-        _maxThumb.center = CGPointMake(self.popView.frame.width + (_maxThumb.frame.width / 2), self.yForValue(self.selectedMaximumValue))
-        self.addSubview(_maxThumb)
-    }
-    
-    func initPopValue() {
-        
-        self.popView = PopView(image: popViewBackgroundImage)
-        self.popView.sizeToFit()
-        self.popView.hidden = true
-        self.popView.center = CGPointMake(self.popView.frame.width/2, 0)
-        self.addSubview(self.popView)
-    }
+    //    func initMinThumb() {
+    //        _minThumb = UIImageView(image: minHandle)
+    //        _minThumb.center = CGPointMake(self.popView.frame.width + (_minThumb.frame.width / 2), self.yForValue(self.selectedMinimumValue))
+    //        self.addSubview(_minThumb)
+    //    }
+    //
+    //    func initMaxThumb() {
+    //        _maxThumb = UIImageView(image: maxHandle)
+    //
+    //        _maxThumb.center = CGPointMake(self.popView.frame.width + (_maxThumb.frame.width / 2), self.yForValue(self.selectedMaximumValue))
+    //        self.addSubview(_maxThumb)
+    //    }
+    //
+    //    func initPopValue() {
+    //
+    //        self.popView = PopView(image: popViewBackgroundImage)
+    //        self.popView.sizeToFit()
+    //        self.popView.hidden = true
+    //        self.popView.center = CGPointMake(self.popView.frame.width/2, 0)
+    //        self.addSubview(self.popView)
+    //    }
     
     public var step: Int = 10
     public var unit: Int = 1
@@ -134,60 +129,111 @@ public class YCRangeSlider: UIControl {
     let STEP_HEIGHT: CGFloat = 15
     
     func setupBackgroundView() {
-        // Draw the base line
-        let lineHeight: CGFloat = 1
-        let lineWidth: CGFloat = self.frame.width - _padding*2
-        let line = UIView(frame: CGRectMake(0, 0, lineWidth, lineHeight))
-        line.center = self.center
-        line.backgroundColor = UIColor.whiteColor()
-        self.addSubview(line)
-        
-        let unitWidth = lineWidth / CGFloat((maximumValue - minimumValue))
-        for unit in 0...Int(maximumValue - minimumValue) {
-            if unit % step == 0 { // Add step to the base line
-                let stepLine: UIView = UIView(frame: CGRectMake(
-                    _padding + unitWidth * CGFloat(unit),
-                    line.center.y - STEP_HEIGHT,
-                    UNIT_WIDTH,
-                    STEP_HEIGHT))
-                stepLine.backgroundColor = UIColor.whiteColor()
-                self.addSubview(stepLine)
-                
-                let stepNumber: UILabel = UILabel()
-                stepNumber.text = "\(unit)"
-                stepNumber.textColor = UIColor.whiteColor()
-                stepNumber.font = UIFont.systemFontOfSize(10)
-                stepNumber.sizeToFit()
-                
-                stepNumber.center = CGPointMake(stepLine.center.x, stepLine.center.y - STEP_HEIGHT)
-                self.addSubview(stepNumber)
-                
-            } else { // Add unit to the base line
-                let unitLine: UIView = UIView(frame: CGRectMake(
-                    _padding + unitWidth * CGFloat(unit),
-                    line.center.y - UNIT_HEIGHT,
-                    UNIT_WIDTH,
-                    UNIT_HEIGHT))
-                
-                unitLine.backgroundColor = UIColor.whiteColor()
-                self.addSubview(unitLine)
+        if self.relative == YCRelative.horizontal {
+            // Draw the base line
+            let lineHeight: CGFloat = 1
+            let lineWidth: CGFloat = self.frame.width - _padding*2
+            let line = UIView(frame: CGRectMake(0, 0, lineWidth, lineHeight))
+            line.center = self.center
+            line.backgroundColor = UIColor.whiteColor()
+            self.addSubview(line)
+            
+            let unitWidth = lineWidth / CGFloat((maximumValue - minimumValue))
+            for unit in 0...Int(maximumValue - minimumValue) {
+                if unit % step == 0 { // Add step to the base line
+                    let stepLine: UIView = UIView(frame: CGRectMake(
+                        _padding + unitWidth * CGFloat(unit),
+                        line.center.y - STEP_HEIGHT,
+                        UNIT_WIDTH,
+                        STEP_HEIGHT))
+                    stepLine.backgroundColor = UIColor.whiteColor()
+                    self.addSubview(stepLine)
+                    
+                    let stepNumber: UILabel = UILabel()
+                    stepNumber.text = "\(unit)"
+                    stepNumber.textColor = UIColor.whiteColor()
+                    stepNumber.font = UIFont.systemFontOfSize(10)
+                    stepNumber.sizeToFit()
+                    
+                    stepNumber.center = CGPointMake(stepLine.center.x, stepLine.center.y - STEP_HEIGHT)
+                    self.addSubview(stepNumber)
+                    
+                } else { // Add unit to the base line
+                    let unitLine: UIView = UIView(frame: CGRectMake(
+                        _padding + unitWidth * CGFloat(unit),
+                        line.center.y - UNIT_HEIGHT,
+                        UNIT_WIDTH,
+                        UNIT_HEIGHT))
+                    
+                    unitLine.backgroundColor = UIColor.whiteColor()
+                    self.addSubview(unitLine)
+                }
+            }
+        } else {
+            // Draw the base line
+            let lineWidth: CGFloat = 1
+            let lineHeight: CGFloat = self.frame.height - _padding * 2
+            let line = UIView(frame: CGRectMake(0, 0, lineWidth, lineHeight))
+            line.center = self.center
+            line.backgroundColor  = UIColor.whiteColor()
+            self.addSubview(line)
+            
+            let unitHeight = lineHeight / CGFloat((maximumValue - minimumValue))
+            for unit in 0...Int(maximumValue - minimumValue) {
+                if unit % step == 0 {
+                    let stepLine: UIView = UIView(frame: CGRectMake(
+                        line.center.x - STEP_HEIGHT,
+                        _padding + unitHeight * CGFloat(unit),
+                        STEP_HEIGHT,
+                        UNIT_WIDTH))
+                    stepLine.backgroundColor = UIColor.whiteColor()
+                    self.addSubview(stepLine)
+                    
+                    let stepNumber: UILabel = UILabel()
+                    stepNumber.text = "\(unit)"
+                    stepNumber.textColor = UIColor.whiteColor()
+                    stepNumber.font = UIFont.systemFontOfSize(10)
+                    stepNumber.sizeToFit()
+                    
+                    stepNumber.center = CGPointMake(stepLine.center.x - STEP_HEIGHT, stepLine.center.y)
+                    self.addSubview(stepNumber)
+                } else {
+                    let unitLine: UIView = UIView(frame: CGRectMake(line.center.x - UNIT_HEIGHT, _padding+unitHeight*CGFloat(unit), UNIT_HEIGHT, UNIT_WIDTH))
+                    unitLine.backgroundColor = UIColor.whiteColor()
+                    self.addSubview(unitLine)
+                }
             }
         }
+        
     }
     
     
     func setupHandleMinThumb() {
-        _minThumb = UIImageView(image: UIImage(named: "handle"))
-        _minThumb.sizeToFit()
-        _minThumb.center = CGPointMake(self.xForValue(0), ((self.frame.height - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20)
-        self.addSubview(_minThumb)
+        if self.relative == YCRelative.horizontal {
+            _minThumb = UIImageView(image: UIImage(named: "handle"))
+            _minThumb.sizeToFit()
+            _minThumb.center = CGPointMake(self.xForValue(self.selectedMinimumValue), ((self.frame.height - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20)
+            self.addSubview(_minThumb)
+        } else {
+            _minThumb = UIImageView(image: UIImage(named: "handle_vertical_left"))
+            _minThumb.sizeToFit()
+            _minThumb.center = CGPointMake(((self.frame.width - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20, self.yForValue(self.selectedMinimumValue))
+            self.addSubview(_minThumb)
+        }
     }
     
     func setupHandleMaxThumb() {
-        _maxThumb = UIImageView(image: UIImage(named: "handle"))
-        _maxThumb.sizeToFit()
-        _maxThumb.center = CGPointMake(self.xForValue(50), ((self.frame.height - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20)
-        self.addSubview(_maxThumb)
+        if self.relative == YCRelative.horizontal {
+            _maxThumb = UIImageView(image: UIImage(named: "handle"))
+            _maxThumb.sizeToFit()
+            _maxThumb.center = CGPointMake(self.xForValue(self.selectedMaximumValue), ((self.frame.height - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20)
+            self.addSubview(_maxThumb)
+        } else {
+            _maxThumb = UIImageView(image: UIImage(named: "handle_vertical_left"))
+            _maxThumb.sizeToFit()
+            _maxThumb.center = CGPointMake(((self.frame.width - STEP_HEIGHT)) / 2 - STEP_HEIGHT - 20, self.yForValue(self.selectedMaximumValue))
+            self.addSubview(_maxThumb)
+        }
     }
     
     // MARK: - Tracking Touch
@@ -207,13 +253,25 @@ public class YCRangeSlider: UIControl {
             return true
         }
         let touchPoint = touch.locationInView(self)
-        if _minThumbOn {
-            _minThumb.center = CGPointMake(max(self.xForValue(self.minimumValue), min(touchPoint.x, self.xForValue(self.selectedMaximumValue - self.minimumRange))), _minThumb.center.y)
-            self.selectedMinimumValue = self.valueForX(_minThumb.center.x)
-        }
-        if _maxThumbOn {
-            _maxThumb.center = CGPointMake(min(max(self.xForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.x), self.xForValue(self.maximumValue)), _maxThumb.center.y)
-            self.selectedMaximumValue = self.valueForX(_maxThumb.center.x)
+        
+        if self.relative == YCRelative.horizontal {
+            if _minThumbOn {
+                _minThumb.center = CGPointMake(max(self.xForValue(self.minimumValue), min(touchPoint.x, self.xForValue(self.selectedMaximumValue - self.minimumRange))), _minThumb.center.y)
+                self.selectedMinimumValue = self.valueForX(_minThumb.center.x)
+            }
+            if _maxThumbOn {
+                _maxThumb.center = CGPointMake(min(max(self.xForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.x), self.xForValue(self.maximumValue)), _maxThumb.center.y)
+                self.selectedMaximumValue = self.valueForX(_maxThumb.center.x)
+            }
+        } else {
+            if _minThumbOn {
+                _minThumb.center = CGPointMake(_minThumb.center.x, max(self.yForValue(self.minimumValue), min(touchPoint.y, self.yForValue(self.selectedMaximumValue - self.minimumRange))))
+                self.selectedMinimumValue = self.valueForY(_minThumb.center.y)
+            }
+            if _maxThumbOn {
+                _maxThumb.center = CGPointMake(_maxThumb.center.x, min(max(self.yForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.y), self.yForValue(self.maximumValue)))
+                self.selectedMaximumValue = self.valueForY(_maxThumb.center.y)
+            }
         }
         return true
     }
@@ -265,9 +323,16 @@ public class YCRangeSlider: UIControl {
     }
     
     func adjustThumbCenter(thumb: UIView, byNewValue value: CGFloat) {
-        let newX = self.xForValue(value)
-        UIView.animateWithDuration(0.3) { () -> Void in
-            thumb.center = CGPointMake(newX, thumb.center.y)
+        if self.relative == YCRelative.horizontal {
+            let newX = self.xForValue(value)
+            UIView.animateWithDuration(0.3) { () -> Void in
+                thumb.center = CGPointMake(newX, thumb.center.y)
+            }
+        } else {
+            let newY = self.yForValue(value)
+            UIView.animateWithDuration(0.3) { () -> Void in
+                thumb.center = CGPointMake(thumb.center.x, newY)
+            }
         }
     }
 }
