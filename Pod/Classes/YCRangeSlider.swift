@@ -29,6 +29,8 @@ public class YCRangeSlider: UIControl {
     public var maxHandle: UIImage!
     public var popViewBackgroundImage: UIImage!
     
+    public var moveThumbByStep = false
+    
     var _maxThumbOn = false
     var _minThumbOn = false
     
@@ -393,16 +395,27 @@ public class YCRangeSlider: UIControl {
         _maxThumbOn = false
         _minThumbOn = false
         
-        // Adjust the minThumb's center
-        let minThumbRoundValue = self.getTheRoundValue(Int(self.selectedMinimumValue))
+        // Adjust the minThumb's location
+        var minThumbRoundValue:  CGFloat = 0
+        if self.moveThumbByStep {
+            minThumbRoundValue  = self.getTheRoundValue(Int(self.selectedMinimumValue), bySection: self.step)
+        } else {
+            minThumbRoundValue  = self.getTheRoundValue(Int(self.selectedMinimumValue), bySection: self.unit)
+        }
         UIView.animateWithDuration(0.3) { () -> Void in
             self.adjustThumbCenter(self._minThumb, byNewValue: minThumbRoundValue)
         }
         
         self.selectedMinimumValue = minThumbRoundValue
         
-        // Adjust the maxThumb's center
-        let maxThumbRoundValue = self.getTheRoundValue(Int(self.selectedMaximumValue))
+        // Adjust the maxThumb's location
+        var maxThumbRoundValue: CGFloat!
+        
+        if self.moveThumbByStep {
+            maxThumbRoundValue = self.getTheRoundValue(Int(self.selectedMaximumValue), bySection: self.step)
+        } else {
+            maxThumbRoundValue = self.getTheRoundValue(Int(self.selectedMaximumValue), bySection: self.unit)
+        }
         UIView.animateWithDuration(0.3) { () -> Void in
             self.adjustThumbCenter(self._maxThumb, byNewValue: maxThumbRoundValue)
             
@@ -410,28 +423,24 @@ public class YCRangeSlider: UIControl {
         self.selectedMaximumValue = maxThumbRoundValue
     }
     
-    func getTheRoundValue(value: Int) -> CGFloat {
+    /*
+    Get the round value by section.
+    e.g. if the section is 5, then the value must be 0, 5, 10, 15; if the section is 3, then the value must be 0, 3, 6, 9, 12
+    */
+    func getTheRoundValue(value: Int, bySection section: Int) -> CGFloat {
         if value == 0 {
             return 0
         }
-        if value % self.step == 0 {
+        if value % section == 0 {
             return CGFloat(value)
         }
-        let pre = value / self.step * self.step
-        let next = (value / self.step + 1) * self.step
+        let pre = value / section * section
+        let next = (value / section + 1) * section
         if (value - pre) < (next - value) {
             return CGFloat(pre)
         } else {
             return CGFloat(next)
         }
-    }
-    
-    public func getPreStepValue(value: CGFloat, byStep step: CGFloat) -> CGFloat {
-        return CGFloat(Int(value / step) * Int(step))
-    }
-    
-    public func getNextStepValue(value: CGFloat, byStep step: CGFloat) -> CGFloat {
-        return CGFloat((Int(value / step) + 1) * Int(step))
     }
     
     func adjustThumbCenter(thumb: UIView, byNewValue value: CGFloat) {
