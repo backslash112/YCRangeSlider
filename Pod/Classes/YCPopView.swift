@@ -20,6 +20,7 @@ public class YCPopView: UIImageView {
     
     override init(image: UIImage?) {
         super.init(image: image)
+        self.contentMode = UIViewContentMode.Left
         self.initValueLabel()
     }
     
@@ -34,6 +35,7 @@ public class YCPopView: UIImageView {
         self.addSubview(valueLabel)
         
     }
+    
     var valueLabel: UILabel!
     var _popValue: String = ""
     var popValue: String {

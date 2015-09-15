@@ -39,7 +39,7 @@ public class YCRangeSlider: UIControl {
     public var maximumValue: CGFloat = 50
     public var selectedMinimumValue: CGFloat = 0
     public var selectedMaximumValue: CGFloat = 50
-
+    
     var _minimumRange: CGFloat = 10
     public var minimumRange: CGFloat {
         get {
@@ -88,6 +88,7 @@ public class YCRangeSlider: UIControl {
         get {
             if _popView == nil {
                 _popView = YCPopView(image: self.popViewBackgroundImage)
+                _popView?.popValue = "\(self.maximumValue)"
                 _popView?.sizeToFit()
             }
             return _popView!
@@ -118,7 +119,6 @@ public class YCRangeSlider: UIControl {
         super.init(frame: frame)
         self.backgroundColor = UIColor.blackColor()
         
-        self.buildPopBackgroundView()
     }
     
     public convenience init(frame: CGRect, relative: YCRelative, minimumValue: CGFloat, maximumValue: CGFloat, step: CGFloat) {
@@ -134,6 +134,7 @@ public class YCRangeSlider: UIControl {
         self.buildScales()
         self.buildHandleMinThumbView()
         self.buildHandleMaxThumbView()
+        self.buildPopBackgroundView()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -156,7 +157,6 @@ public class YCRangeSlider: UIControl {
             line.center = self.center
             line.backgroundColor = UIColor.whiteColor()
             self.addSubview(line)
-            
         } else {
             // Draw the base line
             let lineWidth: CGFloat = 1
@@ -165,9 +165,7 @@ public class YCRangeSlider: UIControl {
             line.center = self.center
             line.backgroundColor  = UIColor.whiteColor()
             self.addSubview(line)
-            
         }
-        
     }
     
     func buildScales() {
@@ -274,6 +272,9 @@ public class YCRangeSlider: UIControl {
     }
     
     func buildPopBackgroundView() {
+        if _relative == YCRelative.horizontal {
+            self.popView.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI/2))
+        }
         self.addSubview(self.popView)
         self.popView.hidden = true
     }
@@ -353,7 +354,7 @@ public class YCRangeSlider: UIControl {
         
         self.adjustPopViewWithThumb(_minThumb, withAnimation: true)
         self.hidePopView()
-
+        
         self.selectedMinimumValue = minThumbRoundValue
         
         // Adjust the maxThumb's location
@@ -368,10 +369,14 @@ public class YCRangeSlider: UIControl {
         
         self.adjustPopViewWithThumb(_maxThumb, withAnimation: true)
         self.hidePopView()
-
+        
         self.selectedMaximumValue = maxThumbRoundValue
         
-        self.delegate?.rangeSlider(self, valueChangedWithMinimumValue: self.selectedMinimumValue, andMaxiumValue: self.selectedMaximumValue)
+        if _relative == YCRelative.horizontal {
+            self.delegate?.rangeSlider(self, valueChangedWithMinimumValue: selectedMinimumValue, andMaxiumValue: self.selectedMaximumValue)
+        } else {
+            self.delegate?.rangeSlider(self, valueChangedWithMinimumValue: self.maximumValue - self.selectedMaximumValue, andMaxiumValue: self.maximumValue - self.selectedMinimumValue)
+        }
     }
     
     /*
@@ -425,12 +430,19 @@ public class YCRangeSlider: UIControl {
     }
     
     func adjustPopViewWithThumb(thumb: UIView, withAnimation animation: Bool = false) {
-        UIView.animateWithDuration(animation ? 0.3 : 0.0) { () -> Void in
-            self.popView.center = CGPointMake(thumb.frame.origin.x - self.popView.frame.width / 2, thumb.center.y)
+        
+        if _relative == YCRelative.horizontal {
+            UIView.animateWithDuration(animation ? 0.3 : 0.0) { () -> Void in
+                self.popView.center = CGPointMake(thumb.center.x,
+                    thumb.center.y - self.popView.frame.height / 2 - thumb.frame.height / 2)
+            }
+
+        } else {
+            UIView.animateWithDuration(animation ? 0.3 : 0.0) { () -> Void in
+                self.popView.center = CGPointMake(thumb.frame.origin.x - self.popView.frame.width / 2, thumb.center.y)
+            }
         }
     }
-    
-    
 }
 
 

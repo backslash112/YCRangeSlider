@@ -22,7 +22,7 @@ class ViewController: UIViewController, YCRangeSliderDelegate {
     }
 
     func initRangeSlider() {
-        let slider = YCRangeSlider(frame: self.view.frame, relative: .vertical, minimumValue: 0, maximumValue: 50, step: 10)
+        let slider = YCRangeSlider(frame: self.view.frame, relative: YCRelative.horizontal, minimumValue: 0, maximumValue: 50, step: 10)
         slider.delegate = self
         slider.moveThumbByStep = true
         self.view.addSubview(slider)
