@@ -18,11 +18,17 @@ class ViewController: UIViewController, YCRangeSliderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.grayColor()
+//        self.initRangeSlider()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.initRangeSlider()
     }
 
     func initRangeSlider() {
-        let slider = YCRangeSlider(frame: self.view.frame, relative: YCRelative.vertical, minimumValue: 0, maximumValue: 50, step: 10)
+        let frame = CGRectMake((self.view.frame.size.width - 200) / 2, (self.view.frame.size.height - 624) / 2, 200, 624)
+        let slider = YCRangeSlider(frame: frame, relative: YCRelative.vertical, minimumValue: 1980, maximumValue: 2015, step: 5)
         slider.delegate = self
         slider.moveThumbByStep = true
         self.view.addSubview(slider)
@@ -31,7 +37,7 @@ class ViewController: UIViewController, YCRangeSliderDelegate {
     // MARK: - YCRangeSliderDelegate
     
     func rangeSlider(rangeSlider: YCRangeSlider, valueChangedWithMinimumValue minimumValue: CGFloat, andMaxiumValue maxiumValue: CGFloat) {
-        print("minimumValue: \(minimumValue)  maxiumValue: \(maxiumValue)")
+        print("YCRangeSliderDelegate minimumValue: \(minimumValue)  maxiumValue: \(maxiumValue)")
     }
 }
 
