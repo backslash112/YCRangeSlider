@@ -419,7 +419,11 @@ public class YCRangeSlider: UIControl {
     
     func updatePopViewValue(value: CGFloat) {
         print("value: \(value)")
-        let roundValue = self.getRoundValue(value, bySection: self.unit)
+        
+        var roundValue = self.getRoundValue(value, bySection: self.unit)
+        if _relative == YCRelative.vertical {
+            roundValue = self.maximumValue - roundValue
+        }
         print("roundValue: \(roundValue)")
         self.popView.popValue = "\(roundValue)"
     }
