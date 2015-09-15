@@ -224,7 +224,6 @@ public class YCRangeSlider: UIControl {
         _minThumb.sizeToFit()
         _minThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMinimumValue))
         self.addSubview(_minThumb)
-        _minThumb.backgroundColor = UIColor.greenColor()
     }
     
     func buildHandleMaxThumbView() {
@@ -233,7 +232,6 @@ public class YCRangeSlider: UIControl {
         _maxThumb.sizeToFit()
         _maxThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMaximumValue))
         self.addSubview(_maxThumb)
-        _maxThumb.backgroundColor = UIColor.redColor()
     }
     
     func buildPopBackgroundView() {
@@ -362,21 +360,15 @@ public class YCRangeSlider: UIControl {
     //
     
     func updateMaxPopView() {
-        
-        print("selectedMinimumValue: \(self.selectedMinimumValue) maximumValue: \(self.maximumValue) minimumValue: \(self.minimumValue)")
         self.updatePopView(self.maxPopView, withValue: self.maximumValue - self.selectedMaximumValue + self.minimumValue)
     }
     
     func updateMinPopView() {
-        print("selectedMaximumValue: \(self.selectedMaximumValue) maximumValue: \(self.maximumValue) minimumValue: \(self.minimumValue)")
         self.updatePopView(self.minPopView, withValue:  self.maximumValue - self.selectedMinimumValue + self.minimumValue)
     }
     
     func updatePopView(popView: YCPopView, withValue value: CGFloat) {
-        print("value: \(value)")
-        
         let roundValue = self.getRoundValue(value, bySection: self.unit)
-        print("roundValue: \(roundValue)")
         popView.popValue = "\(roundValue)"
     }
     func hidePopView() {
