@@ -40,7 +40,7 @@ public class YCRangeSlider: UIControl {
     public var selectedMinimumValue: CGFloat = 0
     public var selectedMaximumValue: CGFloat = 50
     
-    var _minimumRange: CGFloat = 10
+    var _minimumRange: CGFloat = 1
     public var minimumRange: CGFloat {
         get {
             return _minimumRange
@@ -224,6 +224,26 @@ public class YCRangeSlider: UIControl {
         _minThumb.sizeToFit()
         _minThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMinimumValue))
         self.addSubview(_minThumb)
+//        _minThumb.backgroundColor = UIColor.greenColor()
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: "doubleTapOnMinThumb")
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.cancelsTouchesInView = false
+        _minThumb.addGestureRecognizer(doubleTap)
+//        _minThumb.userInteractionEnabled = true
+    }
+    
+    var minThumbEnable = true
+    
+    func singleTapOnMinThumb() {
+        
+    }
+    func doubleTapOnMinThumb() {
+        print("doubleTapOnMinThumb")
+        minThumbEnable = !minThumbEnable
+        
+        _minThumb.alpha = minThumbEnable ? 1.0 : 0.4
+        self.minPopView.alpha = minThumbEnable ? 1.0 : 0.4
     }
     
     func buildHandleMaxThumbView() {
@@ -232,6 +252,23 @@ public class YCRangeSlider: UIControl {
         _maxThumb.sizeToFit()
         _maxThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMaximumValue))
         self.addSubview(_maxThumb)
+//        _maxThumb.backgroundColor = UIColor.redColor()
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: "doubleTapOnMaxThumb")
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.cancelsTouchesInView = false
+        _maxThumb.addGestureRecognizer(doubleTap)
+//        _maxThumb.userInteractionEnabled = true
+
+    }
+    
+    var maxThumbEnable = true
+    func doubleTapOnMaxThumb() {
+        print("doubleTapOnMaxThumb")
+
+        _maxThumb.alpha = maxThumbEnable ? 0.4 : 1.0
+        self.maxPopView.alpha = maxThumbEnable ? 0.4 : 1.0
+        maxThumbEnable = !maxThumbEnable
     }
     
     func buildPopBackgroundView() {
@@ -249,15 +286,19 @@ public class YCRangeSlider: UIControl {
     // MARK: - Tracking Touch
     
     public override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        
         let touchPoint = touch.locationInView(self)
-        if CGRectContainsPoint(_minThumb.frame, touchPoint) {
+        if CGRectContainsPoint(_minThumb.frame, touchPoint) && minThumbEnable {
             _minThumbOn = true
+            self.bringSubviewToFront(_minThumb)
             self.adjustPopView(self.minPopView, withThumb: _minThumb)
             //            self.showPopView()
             self.updateMinPopView()
             
-        } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
+            
+        } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) && maxThumbEnable {
             _maxThumbOn = true
+            self.bringSubviewToFront(_maxThumb)
             self.adjustPopView(self.maxPopView, withThumb: _maxThumb)
             //            self.showPopView()
             self.updateMaxPopView()
@@ -274,27 +315,36 @@ public class YCRangeSlider: UIControl {
         
         
         if _minThumbOn {
-            _minThumb.center = CGPointMake(_minThumb.center.x, max(self.yForValue(self.minimumValue), min(touchPoint.y, self.yForValue(self.selectedMaximumValue - self._minimumRange))))
+            _minThumb.center = CGPointMake(_minThumb.center.x, max(self.yForValue(self.minimumValue), min(touchPoint.y, self.yForValue(self.selectedMaximumValue - self.minimumRange))))
             self.selectedMinimumValue = self.valueForY(_minThumb.center.y)
             //            self.showPopView()
             self.updateMinPopView()
             self.adjustPopView(self.minPopView, withThumb: _minThumb)
-        }
-        if _maxThumbOn {
-            _maxThumb.center = CGPointMake(_maxThumb.center.x, min(max(self.yForValue(self.selectedMinimumValue + self._minimumRange), touchPoint.y), self.yForValue(self.maximumValue)))
+            
+            if _minThumb.center == _maxThumb.center {
+                flag = 2
+            }
+        } else if _maxThumbOn {
+            _maxThumb.center = CGPointMake(_maxThumb.center.x, min(max(self.yForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.y), self.yForValue(self.maximumValue)))
             self.selectedMaximumValue = self.valueForY(_maxThumb.center.y)
             //            self.showPopView()
             self.updateMaxPopView()
             self.adjustPopView(self.maxPopView, withThumb: _maxThumb)
+            
+            if _maxThumb.center == _minThumb.center {
+                flag = 1
+            }
         }
         
             self.delegate?.rangeSlider(self, valueChangedWithMinimumValue: self.maximumValue - self.selectedMaximumValue, andMaxiumValue: self.maximumValue - self.selectedMinimumValue)
         return true
     }
     
+    var flag = 0 // 1:max 2:min
     public override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         _maxThumbOn = false
         _minThumbOn = false
+        
         
         // Adjust the minThumb's location
         var minThumbRoundValue:  CGFloat!
