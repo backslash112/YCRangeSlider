@@ -44,7 +44,7 @@ public class YCPopView: UIImageView {
         }
         set {
             _popValue = newValue
-            self.valueLabel.text = "\(newValue)"
+            self.valueLabel.text = "\(Int(newValue))"
         }
     }
 }
