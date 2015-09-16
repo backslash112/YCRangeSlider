@@ -271,21 +271,28 @@ public class YCRangeSlider: UIControl {
     // MARK: - Tracking Touch
     
     var date: NSDate?
+    func isDoubleTap() -> Bool {
+        return date != nil && date?.dateByAddingTimeInterval(0.2).compare(NSDate()) == NSComparisonResult.OrderedDescending
+    }
     public override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         let touchPoint = touch.locationInView(self)
-        
         // double tap checking
         
-        let now = NSDate()
-        if date != nil && date?.dateByAddingTimeInterval(0.5).compare(now) == NSComparisonResult.OrderedDescending {
-            if CGRectContainsPoint(_minThumb.frame, touchPoint) {
+        if CGRectContainsPoint(_minThumb.frame, touchPoint) {
+            if self.isDoubleTap() {
                 self.doubleTapOnThumb(_minThumb)
-            } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
-                self.doubleTapOnThumb(_maxThumb)
+                date = nil
+            } else {
+                date = NSDate()
             }
-            date = nil
-        } else {
-            date = now
+        } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
+            if self.isDoubleTap() {
+                self.doubleTapOnThumb(_maxThumb)
+                date = nil
+            }
+            else {
+                date = NSDate()
+            }
         }
         
         if CGRectContainsPoint(_minThumb.frame, touchPoint) && _minThumbEnable {
