@@ -37,14 +37,14 @@ public class YCPopView: UIImageView {
     }
     
     var valueLabel: UILabel!
-    var _popValue: String = ""
-    var popValue: String {
+    var _popValue: CGFloat = 0
+    var popValue: CGFloat {
         get {
             return _popValue
         }
         set {
             _popValue = newValue
-            self.valueLabel.text = newValue
+            self.valueLabel.text = "\(newValue)"
         }
     }
 }

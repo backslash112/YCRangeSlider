@@ -37,7 +37,7 @@ class ViewController: UIViewController, YCRangeSliderDelegate {
     // MARK: - YCRangeSliderDelegate
     
     func rangeSlider(rangeSlider: YCRangeSlider, valueChangedWithMinimumValue minimumValue: CGFloat, andMaxiumValue maxiumValue: CGFloat) {
-        print("YCRangeSliderDelegate minimumValue: \(minimumValue)  maxiumValue: \(maxiumValue)")
+        // print("YCRangeSliderDelegate minimumValue: \(minimumValue)  maxiumValue: \(maxiumValue)")
     }
 }
 

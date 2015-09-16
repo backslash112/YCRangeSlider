@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 public enum YCRelative {
     case horizontal, vertical
@@ -88,7 +89,7 @@ public class YCRangeSlider: UIControl {
         get {
             if _minPopView == nil {
                 _minPopView = YCPopView(image: self.popViewBackgroundImage)
-                _minPopView?.popValue = "\(self.maximumValue)"
+                _minPopView?.popValue = self.maximumValue
                 _minPopView?.sizeToFit()
             }
             return _minPopView!
@@ -104,7 +105,7 @@ public class YCRangeSlider: UIControl {
         get {
             if _maxPopView == nil {
                 _maxPopView = YCPopView(image: self.popViewBackgroundImage)
-                _maxPopView?.popValue = "\(self.maximumValue)"
+                _maxPopView?.popValue = self.maximumValue
                 _maxPopView?.sizeToFit()
             }
             return _maxPopView!
@@ -242,8 +243,8 @@ public class YCRangeSlider: UIControl {
         print("doubleTapOnMinThumb")
         minThumbEnable = !minThumbEnable
         
-        _minThumb.alpha = minThumbEnable ? 1.0 : 0.4
-        self.minPopView.alpha = minThumbEnable ? 1.0 : 0.4
+        _minThumb.alpha = minThumbEnable ? 1.0 : 0.3
+        self.minPopView.alpha = minThumbEnable ? 1.0 : 0.3
     }
     
     func buildHandleMaxThumbView() {
@@ -266,8 +267,8 @@ public class YCRangeSlider: UIControl {
     func doubleTapOnMaxThumb() {
         print("doubleTapOnMaxThumb")
 
-        _maxThumb.alpha = maxThumbEnable ? 0.4 : 1.0
-        self.maxPopView.alpha = maxThumbEnable ? 0.4 : 1.0
+        _maxThumb.alpha = maxThumbEnable ? 0.3 : 1.0
+        self.maxPopView.alpha = maxThumbEnable ? 0.3 : 1.0
         maxThumbEnable = !maxThumbEnable
     }
     
@@ -285,9 +286,26 @@ public class YCRangeSlider: UIControl {
     
     // MARK: - Tracking Touch
     
+    var date: NSDate?
     public override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        
         let touchPoint = touch.locationInView(self)
+
+        // double tap checking
+        let now = NSDate()
+        if date != nil && date?.dateByAddingTimeInterval(0.5).compare(now) == NSComparisonResult.OrderedDescending {
+            print("go!")
+            date = nil
+
+            if CGRectContainsPoint(_minThumb.frame, touchPoint) {
+                self.doubleTapOnMinThumb()
+            } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
+                self.doubleTapOnMaxThumb()
+            }
+        } else {
+            date = now
+            print("......")
+        }
+        
         if CGRectContainsPoint(_minThumb.frame, touchPoint) && minThumbEnable {
             _minThumbOn = true
             self.bringSubviewToFront(_minThumb)
@@ -419,7 +437,10 @@ public class YCRangeSlider: UIControl {
     
     func updatePopView(popView: YCPopView, withValue value: CGFloat) {
         let roundValue = self.getRoundValue(value, bySection: self.unit)
-        popView.popValue = "\(roundValue)"
+        if popView.popValue != roundValue {
+            popView.popValue = roundValue
+            AudioServicesPlaySystemSound(1306)
+        }
     }
     func hidePopView() {
         //        UIView.animateWithDuration(0.3) { () -> Void in
