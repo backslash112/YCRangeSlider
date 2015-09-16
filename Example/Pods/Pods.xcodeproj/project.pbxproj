@@ -15,6 +15,7 @@
 		BD29A51BB3531B1D596540B97E6D691D /* YCRangeSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAFD07022C6A0778CE745E9B78654FD /* YCRangeSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3C51ECD1BA66A99004850D3 /* YCRangeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C51ECC1BA66A99004850D3 /* YCRangeSliderTests.swift */; };
 		C3C51ECF1BA66A99004850D3 /* YCRangeSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F08E2FFF74D9119899E6A49C7E3C5640 /* YCRangeSlider.framework */; settings = {ASSET_TAGS = (); }; };
+		C3DB447E1BA90F4B00F6BD45 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DB447D1BA90F3E00F6BD45 /* images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		D4FC02AB946B1ECCD59312C2AA9E46F4 /* Pods-YCRangeSlider_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4EC271FC39B3CCCC48A17FB5B932954 /* Pods-YCRangeSlider_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8926A02B53AD858CCACD2905B70DAC1 /* YCRangeSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFC7E53916D41EE35EEEB19251964BB /* YCRangeSlider-dummy.m */; };
 		DB5CB520EB16F86BA4C8C4D80ECA7188 /* Pods-YCRangeSlider_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAF9877EB7BBF3B0BA449CCD1AA71E /* Pods-YCRangeSlider_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -82,6 +83,8 @@
 		C3C51ECA1BA66A99004850D3 /* YCRangeSliderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCRangeSliderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C51ECC1BA66A99004850D3 /* YCRangeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCRangeSliderTests.swift; sourceTree = "<group>"; };
 		C3C51ECE1BA66A99004850D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3DB447D1BA90F3E00F6BD45 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = images.xcassets; path = ../../images.xcassets; sourceTree = "<group>"; };
+		C3DB44801BA9117000F6BD45 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		C42BFAA6933BB073E1E2B50588B9AC17 /* YCRangeSlider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCRangeSlider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7891898EE01F1BEE0B836E7DB9DC2B7 /* YCPopView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YCPopView.swift; sourceTree = "<group>"; };
 		CD08D1BE3211BC7517586AA74749126C /* Pods-YCRangeSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YCRangeSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		71D676885E56ECF93E70A4D144AF437C /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				C3DB447F1BA9117000F6BD45 /* Assets */,
 				8BB466B14A976130BDD1C21C47C55EA8 /* Classes */,
 			);
 			path = Pod;
@@ -268,6 +272,15 @@
 				C3C51ECE1BA66A99004850D3 /* Info.plist */,
 			);
 			path = YCRangeSliderTests;
+			sourceTree = "<group>";
+		};
+		C3DB447F1BA9117000F6BD45 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C3DB447D1BA90F3E00F6BD45 /* images.xcassets */,
+				C3DB44801BA9117000F6BD45 /* .gitkeep */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
@@ -457,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E06A10AF266E73FBA20338EFC6CE070 /* YCRangeSlider.bundle in Resources */,
+				C3DB447E1BA90F4B00F6BD45 /* images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

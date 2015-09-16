@@ -58,7 +58,8 @@ public class YCRangeSlider: UIControl {
     public var popViewBackgroundImage: UIImage {
         get {
             if _popViewBackgroundImage == nil {
-                _popViewBackgroundImage = UIImage(named: "time-machine_popValue_bg")
+                let bundle = NSBundle(forClass: self.dynamicType)
+                _popViewBackgroundImage = UIImage(named: "pop-value_bg", inBundle: bundle, compatibleWithTraitCollection: nil)
             }
             return _popViewBackgroundImage
         }
@@ -220,8 +221,11 @@ public class YCRangeSlider: UIControl {
     }
     
     func buildHandleMinThumbView() {
+        //handle_vertical_left
+        let bundle = NSBundle(forClass: self.dynamicType)
+        _minThumb = UIImageView(image: UIImage(named: "thumb", inBundle: bundle, compatibleWithTraitCollection: nil))
         
-        _minThumb = UIImageView(image: UIImage(named: "handle_vertical_left"))
+        _minThumb.frame = CGRectMake(0, 0, 29.0, 21.0)
         _minThumb.sizeToFit()
         _minThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMinimumValue))
         self.addSubview(_minThumb)
@@ -249,7 +253,8 @@ public class YCRangeSlider: UIControl {
     
     func buildHandleMaxThumbView() {
         
-        _maxThumb = UIImageView(image: UIImage(named: "handle_vertical_left"))
+        let bundle = NSBundle(forClass: self.dynamicType)
+        _maxThumb = UIImageView(image: UIImage(named: "thumb.png", inBundle: bundle, compatibleWithTraitCollection: nil))
         _maxThumb.sizeToFit()
         _maxThumb.center = CGPointMake(self.frame.width - 50, self.yForValue(self.selectedMaximumValue))
         self.addSubview(_maxThumb)
