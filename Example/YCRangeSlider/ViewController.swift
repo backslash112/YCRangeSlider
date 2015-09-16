@@ -31,6 +31,9 @@ class ViewController: UIViewController, YCRangeSliderDelegate {
         let slider = YCRangeSlider(frame: frame, relative: YCRelative.vertical, minimumValue: 1980, maximumValue: 2015, step: 5)
         slider.delegate = self
         slider.moveThumbByStep = true
+        slider.maxThumbImage = UIImage(named: "tm_handle_start")
+        slider.minThumbImage = UIImage(named: "tm_handle_end")
+        slider.popValueImage = UIImage(named: "pop-value_bg")
         self.view.addSubview(slider)
     }
     
