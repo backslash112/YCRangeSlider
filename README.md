@@ -5,11 +5,13 @@
 [![License](https://img.shields.io/cocoapods/l/YCRangeSlider.svg?style=flat)](http://cocoapods.org/pods/YCRangeSlider)
 [![Platform](https://img.shields.io/cocoapods/p/YCRangeSlider.svg?style=flat)](http://cocoapods.org/pods/YCRangeSlider)
 
+A Range Slider Control for iOS.
+
+<img src="https://cloud.githubusercontent.com/assets/5343215/9953287/feaa2382-5e11-11e5-8013-f1a1fa533a35.png" alt="Screenshot" width=280 />
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
