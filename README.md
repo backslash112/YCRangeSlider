@@ -5,7 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/YCRangeSlider.svg?style=flat)](http://cocoapods.org/pods/YCRangeSlider)
 [![Platform](https://img.shields.io/cocoapods/p/YCRangeSlider.svg?style=flat)](http://cocoapods.org/pods/YCRangeSlider)
 
-<img src="https://cloud.githubusercontent.com/assets/5343215/9808669/e4f7260c-5893-11e5-896b-f0c2e805198a.png" alt="Screenshot" width=280 />
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
